@@ -20,9 +20,11 @@
                 var tasks = LoadTasks(dataFilePath);
                 var expectedTotalTime = DataLoader.LoadExpectedResult(resultFilePath);
 
-                var (time, _) = Neh.Calculate(tasks);
+                var (nehTime, _) = Neh.Calculate(tasks);
 
-                Console.WriteLine($"Time: {time}, expected time: {expectedTotalTime}");
+                var origSeqTime = OriginalSequence.Calculate(tasks);
+
+                Console.WriteLine($"Time: {nehTime}, expected time: {expectedTotalTime}, original sequence time: {origSeqTime}");
             }
 
 
