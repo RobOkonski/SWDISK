@@ -24,9 +24,10 @@
 
                 var origSeqTime = OriginalSequence.Calculate(tasks);
 
-                Console.WriteLine($"Time: {nehTime}, expected time: {expectedTotalTime}, original sequence time: {origSeqTime}");
-            }
+                var (bruteForceTime, _) = BruteForce.Calculate(tasks);
 
+                Console.WriteLine($"Time: {nehTime}, expected time: {expectedTotalTime}, original sequence time: {origSeqTime}, brute force time: {bruteForceTime}");
+            }
 
         }
 
