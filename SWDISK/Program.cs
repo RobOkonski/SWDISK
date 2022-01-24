@@ -10,16 +10,13 @@
         static void Main()
         {
             string[] dataFileName = { "NEH1.DAT", "NEH2.DAT", "NEH3.DAT", "NEH4.DAT", "NEH10.DAT", "NEH11.DAT", "NEH12.DAT", "NEH13.DAT", "NEH14.DAT", "NEH15.DAT", "NEH5.DAT", "NEH6.DAT", "NEH7.DAT", "NEH8.DAT", "NEH9.DAT" };
-            //string[] resultFileName = { "NEH1.OUT", "NEH2.OUT", "NEH3.OUT", "NEH4.OUT", "NEH5.OUT", "NEH6.OUT", "NEH7.OUT" };
             string testDataDir = "C:\\Users\\Student241540\\source\\repos\\SWDISK\\SWDISK\\Neh";
 
             for (int i=0; i<4; i++)
             {
                 var dataFilePath = Path.Combine(testDataDir, dataFileName[i]);
-                //var resultFilePath = Path.Combine(testDataDir, resultFileName[i]);
 
                 var tasks = LoadTasks(dataFilePath);
-                //var expectedTotalTime = DataLoader.LoadExpectedResult(resultFilePath);
 
                 Console.WriteLine($"Dataset{i}");
 
@@ -38,6 +35,14 @@
                 TimeSpan origTs = origStopWatch.Elapsed;
                 string origElapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", origTs.Hours, origTs.Minutes, origTs.Seconds, origTs.Milliseconds);
                 Console.WriteLine($"Original sequence result: {origSeqTime} in {origElapsedTime}");
+
+                Stopwatch geneticStopWatch = new Stopwatch();
+                geneticStopWatch.Start();
+                var (geneticSeqTime, _) = Genetic.Calculate(tasks);
+                geneticStopWatch.Stop();
+                TimeSpan geneticTs = geneticStopWatch.Elapsed;
+                string geneticElapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", geneticTs.Hours, geneticTs.Minutes, geneticTs.Seconds, geneticTs.Milliseconds);
+                Console.WriteLine($"Genetic result: {geneticSeqTime} in {geneticElapsedTime}");
 
                 Stopwatch bruteStopWatch = new Stopwatch();
                 bruteStopWatch.Start();
@@ -46,17 +51,13 @@
                 TimeSpan bruteTs = bruteStopWatch.Elapsed;
                 string bruteElapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", bruteTs.Hours, bruteTs.Minutes, bruteTs.Seconds, bruteTs.Milliseconds);
                 Console.WriteLine($"Brute force result: {bruteForceTime} in {bruteElapsedTime}");
-
-                //Console.WriteLine($"Time: {nehTime}, expected time: {expectedTotalTime}, original sequence time: {origSeqTime}, brute force time: {bruteForceTime}");
             }
 
             for (int i = 4; i < 15; i++)
             {
                 var dataFilePath = Path.Combine(testDataDir, dataFileName[i]);
-                //var resultFilePath = Path.Combine(testDataDir, resultFileName[i]);
 
                 var tasks = LoadTasks(dataFilePath);
-                //var expectedTotalTime = DataLoader.LoadExpectedResult(resultFilePath);
 
                 Console.WriteLine($"Dataset{i}");
 
@@ -75,6 +76,14 @@
                 TimeSpan origTs = origStopWatch.Elapsed;
                 string origElapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", origTs.Hours, origTs.Minutes, origTs.Seconds, origTs.Milliseconds);
                 Console.WriteLine($"Original sequence result: {origSeqTime} in {origElapsedTime}");
+
+                Stopwatch geneticStopWatch = new Stopwatch();
+                geneticStopWatch.Start();
+                var (geneticSeqTime, _) = Genetic.Calculate(tasks);
+                geneticStopWatch.Stop();
+                TimeSpan geneticTs = geneticStopWatch.Elapsed;
+                string geneticElapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", geneticTs.Hours, geneticTs.Minutes, geneticTs.Seconds, geneticTs.Milliseconds);
+                Console.WriteLine($"Genetic result: {geneticSeqTime} in {geneticElapsedTime}");
             }
 
         }
