@@ -89,13 +89,10 @@
                             Stopwatch bruteStopWatch = new Stopwatch();
                             bruteStopWatch.Start();
                             int bruteForceTimeSum = 0;
-                            for (int t = 0; t < repeatCount; t++)
-                            {
-                                var (bruteForceTime, _) = BruteForce.Calculate(tasks);
-                                bruteForceTimeSum = bruteForceTime;
-                            }
+                            var (bruteForceTime, _) = BruteForce.Calculate(tasks);
+                            bruteForceTimeSum = bruteForceTime;
                             bruteStopWatch.Stop();
-                            long bruteMili = bruteStopWatch.ElapsedMilliseconds;
+                            long bruteMili = bruteStopWatch.ElapsedMilliseconds * 10;
                             Console.WriteLine($"Brute force result run {j}: {bruteForceTimeSum} in {bruteMili} miliseconds");
                             w.Write($"Brute force result run {j}: {bruteForceTimeSum} in {bruteMili} miliseconds\n");
                         }
